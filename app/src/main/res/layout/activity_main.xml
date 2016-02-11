@@ -8,10 +8,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
-        android:layout_above="@+id/imageView"
-        android:layout_alignStart="@+id/switch1" />
+        android:text="THE BEST"
+        android:id="@+id/button_flo"
+        android:layout_below="@+id/imageView"
+        android:layout_alignStart="@+id/switch1"
+        android:layout_marginTop="69dp" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,5 +26,15 @@
         android:id="@+id/switch1"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/textView"
+        android:layout_alignBaseline="@+id/button_flo"
+        android:layout_alignBottom="@+id/button_flo"
+        android:layout_alignEnd="@+id/button_flo" />
 
 </RelativeLayout>
