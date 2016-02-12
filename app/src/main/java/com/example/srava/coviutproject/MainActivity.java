@@ -68,7 +68,7 @@ public class MainActivity extends Activity {
 
 
                     // permet de reinitialiser le bouton et la TextView
-                    connectionStatus.setText("Non Connecté");
+                    connectionStatus.setText("Non ConnectÃ©");
                     progressBar.setProgress(0);
 
                     Log.d("Connexion", "Connect Button Pressed !");
