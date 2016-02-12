@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Created by sanchisf on 11/02/2016.
+ * Created by Floriane on 11/02/2016.
  */
 public class InputStreamOperations {
 
@@ -30,6 +30,4 @@ public class InputStreamOperations {
         // On appelle la methode precedente avec une taille de buffer par defaut
         return InputStreamToString(in, 1024);
     }
-
-
 }

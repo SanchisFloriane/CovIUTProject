@@ -5,6 +5,8 @@ package com.example.srava.coviutproject;
  */
 public class Personne {
 
+    public String nom;
+
     public String getNom() {
         return nom;
     }
@@ -13,9 +15,6 @@ public class Personne {
         this.nom = nom;
     }
 
-    private String nom;
-
-    public Personne(String nom) {
-        this.nom = nom;
+    public Personne() {
     }
 }
