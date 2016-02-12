@@ -16,8 +16,8 @@
         android:layout_height="wrap_content"
         android:text="Connexion"
         android:id="@+id/btn_connect"
-        android:layout_alignTop="@+id/imageView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/tw_mdp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,5 +27,55 @@
         android:layout_alignParentTop="true"
         android:layout_alignEnd="@+id/btn_connect"
         android:layout_marginTop="51dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:id="@+id/tw_login"
+        android:layout_below="@+id/tv_nom"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mot de passe"
+        android:id="@+id/tw_mdp"
+        android:layout_below="@+id/tw_login"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="45dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/username"
+        android:layout_alignTop="@+id/tv_nom"
+        android:layout_alignStart="@+id/btn_connect" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/password"
+        android:layout_alignBottom="@+id/tw_mdp"
+        android:layout_alignStart="@+id/username" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Non connecté"
+        android:id="@+id/connectionStatus"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_alignEnd="@+id/password" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_marginTop="45dp"
+        android:layout_below="@+id/btn_connect"
+        android:layout_toEndOf="@+id/username" />
 
 </RelativeLayout>
