@@ -22,6 +22,10 @@
             android:name=".FormChoix"
             android:label="@string/title_activity_form_choix" >
         </activity>
+        <activity
+            android:name=".FormaddTrajet"
+            android:label="@string/title_activity_formadd_trajet" >
+        </activity>
     </application>
 
 </manifest>
