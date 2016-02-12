@@ -42,8 +42,7 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
         JSONObject jsonResponse= new JSONObject();
 
         try{
-            // met la progressBar à 10%
-            //   publishProgress(10);
+
             URL url = new URL(LOGIN_URL);
             HttpURLConnection connection = (HttpURLConnection )url.openConnection();
 
@@ -60,15 +59,13 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
                 wr.write( postData );
             }
 
-            // met la progressBar à 30%
-            //   publishProgress(30);
 
-            // envoie des données
+
+            // envoie des donnees
             Log.d("doInBackground", "ready to send request...");
             connection.connect();
 
-            // met la progressBar à 60%
-            //  publishProgress(60);
+
 
             // decode response
             InputStream in = new BufferedInputStream(connection.getInputStream());
@@ -83,8 +80,7 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
         }
         Log.i("doInBackground", jsonResponse.toString());
 
-        // met la progressBar à 100%
-        //  publishProgress(100);
+
         return jsonResponse;
 
     }
@@ -92,7 +88,7 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
     @Override
     protected void onPostExecute( JSONObject result){
 
-        //obligé de mettre un TryAndCatch pour une conversion de jSON
+        //oblige de mettre un TryAndCatch pour une conversion de jSON
         try{
             Log.d("result",result.getString(FLAG_SUCCESS));
             int loginOK = result.getInt(FLAG_SUCCESS);
@@ -101,7 +97,7 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
             // check if connection status is OK
             if(loginOK!=0)
             {
-                connectionStatus.setText("Connecté !");
+                connectionStatus.setText("ConnectÃ© !");
             }
             else
             {
@@ -115,15 +111,9 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
         }
     }
 
-   /* // méthode appelé a chaque "publishProgress()"
-    @Override
-    protected void onProgressUpdate(Integer... values) {
-        super.onProgressUpdate(values);
-        bar.setProgress(values[0]);
-        Log.d("onProgressUpdate","Appelé");
-    }*/
 
-    //méthode pour convertir la réponse du serveur
+
+    //methode pour convertir la reponse du serveur
     public String convertStreamToString(java.io.InputStream is) {
         java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
         return s.hasNext() ? s.next() : "";
