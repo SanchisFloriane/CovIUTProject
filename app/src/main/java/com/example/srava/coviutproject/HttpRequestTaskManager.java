@@ -1,5 +1,7 @@
 package com.example.srava.coviutproject;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import org.json.JSONObject;
 import android.os.NetworkOnMainThreadException;
@@ -20,6 +22,13 @@ import java.nio.charset.StandardCharsets;
  */
 public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONObject>
 {
+
+    protected Context context;
+
+    protected HttpRequestTaskManager(Context context) {
+        this.context = context.getApplicationContext();
+    }
+
     TextView connectionStatus;
     ProgressBar bar;
     private static final String FLAG_SUCCESS = "success";
@@ -98,6 +107,9 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
             if(loginOK!=0)
             {
                 connectionStatus.setText("Connecté !");
+                Intent FormChoix = new Intent(context, com.example.srava.coviutproject.FormChoix.class);
+                FormChoix.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(FormChoix);
             }
             else
             {

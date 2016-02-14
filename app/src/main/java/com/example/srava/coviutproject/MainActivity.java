@@ -80,7 +80,7 @@ public class MainActivity extends Activity {
                     credential.password=password.getText().toString();
 
 
-                    HttpRequestTaskManager result = new HttpRequestTaskManager();
+                    HttpRequestTaskManager result = new HttpRequestTaskManager(getApplicationContext());
 
                     result.setConnectionStatus(connectionStatus);
                     result.execute(credential);
@@ -115,110 +115,6 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONObject>
-    {
-        TextView connectionStatus;
-        ProgressBar bar;
-        private static final String FLAG_SUCCESS = "success";
-        private static final String FLAG_MESSAGE = "message";
-        private static final String LOGIN_URL = "http://coviut.esy.es/index.php";
-
-        // def du setter pour faire le lien avec le TextView depuis la MainActivity
-        public void setConnectionStatus(TextView textView) {
-            this.connectionStatus = textView;
-        }
-
-        // pareil mais pour la progressBar
-        public void setProgressBar(ProgressBar bar) {
-            this.bar = bar;
-        }
-
-        @Override
-        // on va maintenant parler du JSON  !
-        protected JSONObject doInBackground(Credential... params) {
-            JSONObject jsonResponse= new JSONObject();
-
-            try{
-
-                URL url = new URL(LOGIN_URL);
-                HttpURLConnection connection = (HttpURLConnection )url.openConnection();
-
-                //recupere la premiere ligne du tableau
-                Credential credential = params[0];
-
-                // regle la connection et tous les parametres requis
-                connection.setRequestMethod("POST");
-                String urlParameters  = "username="+credential.userName+"&password="+credential.password;
-                byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
-                connection.setRequestProperty("Content-Length", "" + postData.length);
-
-                try( DataOutputStream wr = new DataOutputStream( connection.getOutputStream())) {
-                    wr.write( postData );
-                }
-
-
-
-                // envoie des donnees
-                Log.d("doInBackground", "ready to send request...");
-                connection.connect();
-
-
-
-                // decode response
-                InputStream in = new BufferedInputStream(connection.getInputStream());
-                jsonResponse = new JSONObject(convertStreamToString(in));
-
-            }  catch (IOException e) {
-                Log.e("IOException", "Error1");
-            }  catch(JSONException e){
-                Log.e("JSONException", "Error2");
-            }  catch (NetworkOnMainThreadException e){
-                Log.e("ThreadException", "android > 3.0!!");
-            }
-            Log.i("doInBackground", jsonResponse.toString());
-
-
-            return jsonResponse;
-
-        }
-
-        @Override
-        protected void onPostExecute( JSONObject result){
-
-            //oblige de mettre un TryAndCatch pour une conversion de jSON
-            try{
-                Log.d("result",result.getString(FLAG_SUCCESS));
-                int loginOK = result.getInt(FLAG_SUCCESS);
-                connectionStatus.setText(result.getString(FLAG_MESSAGE));
-
-                // check if connection status is OK
-                if(loginOK!=0)
-                {
-                    connectionStatus.setText("Connecté !");
-                    Intent addTrajet = new Intent(getApplicationContext(), FormaddTrajet.class);
-                    startActivity(addTrajet);
-                }
-                else
-                {
-                    connectionStatus.setText("Mauvais mot de passe ou login.");
-                }
-
-            }  catch(JSONException e){
-                Log.e("JSONException", "Error3");
-            }  catch (NetworkOnMainThreadException e){
-                Log.e("ThreadException", "android > 3.0!!");
-            }
-        }
-
-
-
-        //methode pour convertir la reponse du serveur
-        public String convertStreamToString(java.io.InputStream is) {
-            java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
-            return s.hasNext() ? s.next() : "";
-        }
     }
 
 }
