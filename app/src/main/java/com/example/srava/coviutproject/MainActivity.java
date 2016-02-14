@@ -65,12 +65,8 @@ public class MainActivity extends Activity {
 
                     EditText username = (EditText)findViewById(R.id.username);
                     EditText password = (EditText)findViewById(R.id.password);
-                    TextView connectionStatus = (TextView)findViewById(R.id.connectionStatus);
 
 
-
-                    // permet de reinitialiser le bouton et la TextView
-                    connectionStatus.setText("Non Connecté");
 
 
                     Log.d("Connexion", "Connect Button Pressed !");
@@ -82,7 +78,6 @@ public class MainActivity extends Activity {
 
                     HttpRequestTaskManager result = new HttpRequestTaskManager(getApplicationContext());
 
-                    result.setConnectionStatus(connectionStatus);
                     result.execute(credential);
                     Log.d("HttpRequestTaskManager", String.valueOf(result));
 

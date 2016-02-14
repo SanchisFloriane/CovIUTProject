@@ -8,6 +8,8 @@ import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.json.JSONException;
 import java.io.BufferedInputStream;
 import java.io.DataOutputStream;
@@ -101,19 +103,22 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
         try{
             Log.d("result",result.getString(FLAG_SUCCESS));
             int loginOK = result.getInt(FLAG_SUCCESS);
-            connectionStatus.setText(result.getString(FLAG_MESSAGE));
+
 
             // check if connection status is OK
             if(loginOK!=0)
             {
-                connectionStatus.setText("Connecté !");
+                Log.d("context", "" + context);
+
+                Toast.makeText(context, "Connecté", Toast.LENGTH_LONG).show();
                 Intent FormChoix = new Intent(context, com.example.srava.coviutproject.FormChoix.class);
                 FormChoix.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(FormChoix);
             }
             else
             {
-                connectionStatus.setText("Mauvais mot de passe ou login.");
+                Log.d("context", "" + context);
+                Toast.makeText(context, "échec de la connection,\n mauvais mot de passe ou nom d'utilisateur", Toast.LENGTH_LONG).show();
             }
 
         }  catch(JSONException e){
