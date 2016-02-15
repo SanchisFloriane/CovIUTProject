@@ -53,7 +53,9 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
 
             // regle la connection et tous les parametres requis
             connection.setRequestMethod("POST");
-            String urlParameters  = "username="+credential.userName+"&password="+credential.password;
+
+            String urlParameters  = "username="+credential.userName+"&password="+credential.password;//a modifier
+
             byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
             connection.setRequestProperty("Content-Length", "" + postData.length);
 

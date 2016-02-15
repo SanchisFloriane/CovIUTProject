@@ -20,7 +20,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="25dp"
-            android:layout_marginBottom="25dp" />
+            android:layout_marginBottom="15dp" />
 
         <LinearLayout
             android:orientation="vertical"
@@ -32,7 +32,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="25dp"
-            android:layout_marginBottom="25dp">
+            android:layout_marginBottom="15dp">
 
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
             android:layout_alignParentStart="true">
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="S&apos;inscrire"
                 android:id="@+id/btn_inscrire"
