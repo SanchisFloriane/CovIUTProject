@@ -7,6 +7,9 @@ public class Credential {
 
     public String userName;
     public String password;
+    public String table;
+    public String selectValue;
+    public String value;
 
 
     public Credential() {
@@ -15,6 +18,12 @@ public class Credential {
     public Credential(String username, String password) {
         this.userName = username;
         this.password = password;
+    }
+
+    public Credential(String table, String selectValue, String value){
+        this.table = table;
+        this.selectValue = selectValue;
+        this.value = value;
     }
 
     public String getUsername() {
