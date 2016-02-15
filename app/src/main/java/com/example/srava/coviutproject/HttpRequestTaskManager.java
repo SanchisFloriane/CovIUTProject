@@ -70,7 +70,7 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
         }  catch (IOException e) {
             Log.e("IOException", "Error1");
         }  catch(JSONException e){
-            Log.e("JSONException", "Error2");
+            Log.e("JSONException", "Error23");
         }  catch (NetworkOnMainThreadException e){
             Log.e("ThreadException", "android > 3.0!!");
         }
