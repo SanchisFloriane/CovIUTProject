@@ -4,4 +4,5 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_form_choix">FormChoix</string>
     <string name="title_activity_formadd_trajet">FormaddTrajet</string>
+    <string name="title_activity_inscrire">InscrireActivity</string>
 </resources>

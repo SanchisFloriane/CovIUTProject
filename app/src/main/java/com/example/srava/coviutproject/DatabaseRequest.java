@@ -3,7 +3,6 @@ package com.example.srava.coviutproject;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import org.json.JSONObject;
 import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 import android.widget.ProgressBar;
@@ -11,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -20,14 +21,14 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Created by sanchisf on 28/01/2016.
+ * Created by merciant on 15/02/2016.
  */
-public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONObject>
+public class DatabaseRequest extends AsyncTask<Credential, String, JSONObject>
 {
 
     protected Context context;
 
-    protected HttpRequestTaskManager(Context context) {
+    protected DatabaseRequest(Context context) {
         this.context = context.getApplicationContext();
     }
 
@@ -70,7 +71,7 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
         }  catch (IOException e) {
             Log.e("IOException", "Error1");
         }  catch(JSONException e){
-            Log.e("JSONException", "Error23");
+            Log.e("JSONException", "Error2");
         }  catch (NetworkOnMainThreadException e){
             Log.e("ThreadException", "android > 3.0!!");
         }
@@ -95,7 +96,7 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
             {
                 Log.d("context", "" + context);
 
-                Toast.makeText(context, "ConnectÃ©", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Connecté", Toast.LENGTH_LONG).show();
                 Intent FormChoix = new Intent(context, com.example.srava.coviutproject.FormChoix.class);
                 FormChoix.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(FormChoix);
@@ -103,7 +104,7 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
             else
             {
                 Log.d("context", "" + context);
-                Toast.makeText(context, "Ã‰chec de la connection,\nmauvais mot de passe ou nom d'utilisateur", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Échec de la connection,\nmauvais mot de passe ou nom d'utilisateur", Toast.LENGTH_LONG).show();
             }
 
         }  catch(JSONException e){

@@ -2,35 +2,17 @@ package com.example.srava.coviutproject;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
 
 
-public class MainActivity extends Activity {
+public class LoginActivity extends Activity {
 
     private static final String FLAG_SUCCESS = "success";
     private static final String FLAG_MESSAGE = "message";
@@ -42,12 +24,14 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
 
         Button connect = (Button)findViewById(R.id.btn_connect);
+        TextView inscrire = (TextView)findViewById(R.id.txt_inscire);
 
 
+        inscrire.setOnClickListener(MyListener);
         connect.setOnClickListener(MyListener);
     }
 
@@ -55,26 +39,19 @@ public class MainActivity extends Activity {
 
         @Override
         public void onClick(View v) {
-//ok
+        //ok
             switch (v.getId()){
 
                 case R.id.btn_connect :
-// preparation de la connexion
+                    // preparation de la connexion
                     Log.d("Connexion", "Connect Button Pressed !");
-
 
                     EditText username = (EditText)findViewById(R.id.username);
                     EditText password = (EditText)findViewById(R.id.password);
 
-
-
-
-                    Log.d("Connexion", "Connect Button Pressed !");
-
                     Credential credential = new Credential();
                     credential.userName=username.getText().toString();
                     credential.password=password.getText().toString();
-
 
                     HttpRequestTaskManager result = new HttpRequestTaskManager(getApplicationContext());
 
@@ -82,7 +59,10 @@ public class MainActivity extends Activity {
                     Log.d("HttpRequestTaskManager", String.valueOf(result));
 
                     break;
-
+                case R.id.txt_inscire :
+                    Intent inscrire = new Intent(getApplicationContext(),InscrireActivity.class);
+                    startActivity(inscrire);
+                    break;
             }
         }
     };
