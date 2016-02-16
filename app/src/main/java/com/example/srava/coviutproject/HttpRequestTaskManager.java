@@ -97,7 +97,7 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
             {
                 Log.d("context", "" + context);
 
-                Toast.makeText(context, "Connecté", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Connecté", Toast.LENGTH_SHORT).show();
                 Intent FormChoix = new Intent(context, com.example.srava.coviutproject.FormChoix.class);
                 FormChoix.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(FormChoix);
@@ -105,7 +105,7 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
             else
             {
                 Log.d("context", "" + context);
-                Toast.makeText(context, "Échec de la connection,\nmauvais mot de passe ou nom d'utilisateur", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Échec de la connection,\nmauvais mot de passe ou nom d'utilisateur", Toast.LENGTH_SHORT).show();
             }
 
         }  catch(JSONException e){

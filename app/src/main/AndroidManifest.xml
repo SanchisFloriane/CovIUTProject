@@ -8,7 +8,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name" >
@@ -29,6 +29,10 @@
         <activity
             android:name=".InscrireActivity"
             android:label="@string/title_activity_inscrire" >
+        </activity>
+        <activity
+            android:name=".VoirTrajetActivity"
+            android:label="@string/title_activity_voir_trajet" >
         </activity>
     </application>
 

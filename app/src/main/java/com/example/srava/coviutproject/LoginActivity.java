@@ -59,6 +59,7 @@ public class LoginActivity extends Activity {
                     Log.d("HttpRequestTaskManager", String.valueOf(result));
 
                     break;
+
                 case R.id.txt_inscire :
                     Intent inscrire = new Intent(getApplicationContext(),InscrireActivity.class);
                     startActivity(inscrire);

@@ -5,4 +5,12 @@
     <string name="title_activity_form_choix">FormChoix</string>
     <string name="title_activity_formadd_trajet">FormaddTrajet</string>
     <string name="title_activity_inscrire">InscrireActivity</string>
+
+    <resources>
+        <string name="title_activity_voir_trajet">Ahotbrew.com Datepicker</string>
+
+        <string name="date_pick">Pick a date</string>
+        <string name="action_settings2">Settings</string>
+    </resources>
+    - See more at: http://www.ahotbrew.com/android-datepicker-example/#more-283
 </resources>

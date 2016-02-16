@@ -5,4 +5,14 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="dps" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:actionBarTabStyle">@style/MyActionBarTabStyle</item>
+        <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
+        <item name="android:actionButtonStyle">@style/MyActionBarButtonStyle</item>
+        <item name="android:actionMenuTextColor">#ffffff</item>
+        <item name="android:windowBackground">@drawable/bg</item>
+        <item name="android:datePickerStyle">@android:style/Widget.DatePicker</item>
+    </style>
+
 </resources>
