@@ -1,44 +1,37 @@
 package com.example.srava.coviutproject;
 
+import android.util.Log;
+
+import java.util.ArrayList;
+
 /**
  * Created by sanchisf on 12/02/2016.
  */
 public class Credential {
 
-    public String userName;
-    public String password;
-    public String table;
-    public String selectValue;
-    public String value;
-
+    public String HttpRequest;
+    private Integer i = 0;
+    private Integer j = 0;
 
     public Credential() {
     }
 
-    public Credential(String username, String password) {
-        this.userName = username;
-        this.password = password;
+    public void HttpRequest(String type, ArrayList<String> vars){
+        String PostRequest = "type="+type;
+        for( i = 0; i< vars.size();i++){
+            j = i+1;
+            PostRequest += "&var"+j+"="+vars.get(i);
+        }
+        Log.d("Request ",""+PostRequest);
+        this.HttpRequest = PostRequest;
     }
 
-    public Credential(String table, String selectValue, String value){
-        this.table = table;
-        this.selectValue = selectValue;
-        this.value = value;
+    public void HttpRequest(String request){
+        String PostRequest = "type=custom";
+            PostRequest += "&request=request";
+
+        Log.d("Request ",""+PostRequest);
+        this.HttpRequest = PostRequest;
     }
 
-    public String getUsername() {
-        return userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String toString() {
-        return "Credential{" +
-                "username='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
 }

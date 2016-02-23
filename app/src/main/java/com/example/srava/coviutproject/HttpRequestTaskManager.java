@@ -31,8 +31,7 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
         this.context = context.getApplicationContext();
     }
 
-    TextView connectionStatus;
-    ProgressBar bar;
+    private String action = "noAction";
     private static final String FLAG_SUCCESS = "success";
     private static final String FLAG_MESSAGE = "message";
     private static final String LOGIN_URL = "http://coviut.esy.es/index.php";
@@ -54,7 +53,7 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
             // regle la connection et tous les parametres requis
             connection.setRequestMethod("POST");
 
-            String urlParameters  = "username="+credential.userName+"&password="+credential.password;//a modifier
+            String urlParameters  = credential.HttpRequest;
 
             byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
             connection.setRequestProperty("Content-Length", "" + postData.length);
