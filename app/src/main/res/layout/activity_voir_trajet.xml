@@ -95,15 +95,6 @@
             android:weightSum="1"
             style="@style/dps">
 
-            <DatePicker
-                style="@android:style/TextAppearance.DeviceDefault.Widget.TextView"
-                android:layout_width="297dp"
-                android:layout_height="83dp"
-                android:id="@+id/datePicker"
-                android:calendarViewShown="false"
-                android:style="@/Widget.DatePicker"/>
-
-
 
         </LinearLayout>
 
