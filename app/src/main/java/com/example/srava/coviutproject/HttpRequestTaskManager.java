@@ -19,6 +19,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
+import static com.example.srava.coviutproject.OnPostExecuteFunction.OnPostExecuteLogin;
+
 /**
  * Created by sanchisf on 28/01/2016.
  */
@@ -32,8 +34,10 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
     }
 
     private String action = "noAction";
-    private static final String FLAG_SUCCESS = "success";
+    private static final String FLAG_SUCCESS = "etat";
+    private static final String FLAG_IDENTIFIANT = "identifiant";
     private static final String FLAG_MESSAGE = "message";
+    private static final String FLAG_DATA = "data";
     private static final String LOGIN_URL = "http://coviut.esy.es/index.php";
 
 
@@ -87,28 +91,27 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
 
         //oblige de mettre un TryAndCatch pour une conversion de jSON
         try{
-            Log.d("result",result.getString(FLAG_SUCCESS));
-            int loginOK = result.getInt(FLAG_SUCCESS);
+            Log.d("result success",result.getString(FLAG_SUCCESS));
+            Log.d("result identifiant",result.getString(FLAG_IDENTIFIANT));
+            Log.d("result message",result.getString(FLAG_MESSAGE));
+            Log.d("result data",result.getString(FLAG_DATA));
 
+            int etat = result.getInt(FLAG_SUCCESS);
+            String identifiant = result.getString(FLAG_IDENTIFIANT);
+            String message = result.getString(FLAG_MESSAGE);
+            String data = result.getString(FLAG_DATA);
+
+            Log.d("id",identifiant);
 
             // check if connection status is OK
-            if(loginOK!=0)
-            {
-                Log.d("context", "" + context);
+            if(identifiant == "login"){
+                Log.d("if id","login");
+                OnPostExecuteLogin(etat,message,data,context);
+            }
 
-                Toast.makeText(context, "Connecté", Toast.LENGTH_LONG).show();
-                Intent FormChoix = new Intent(context, com.example.srava.coviutproject.FormChoix.class);
-                FormChoix.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(FormChoix);
-            }
-            else
-            {
-                Log.d("context", "" + context);
-                Toast.makeText(context, "Échec de la connection,\nmauvais mot de passe ou nom d'utilisateur", Toast.LENGTH_LONG).show();
-            }
 
         }  catch(JSONException e){
-            Log.e("JSONException", "Error3");
+            Log.e("JSONException", "Error3"+e.getMessage());
         }  catch (NetworkOnMainThreadException e){
             Log.e("ThreadException", "android > 3.0!!");
         }
