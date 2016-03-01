@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 public class LoginActivity extends Activity {
@@ -31,6 +34,12 @@ public class LoginActivity extends Activity {
         TextView inscrire = (TextView)findViewById(R.id.txt_inscire);
 
 
+
+
+
+
+
+
         inscrire.setOnClickListener(MyListener);
         connect.setOnClickListener(MyListener);
     }
@@ -50,11 +59,12 @@ public class LoginActivity extends Activity {
                     EditText password = (EditText)findViewById(R.id.password);
 
                     Credential credential = new Credential();
-                    credential.userName=username.getText().toString();
-                    credential.password=password.getText().toString();
+                    ArrayList<String> vars = new ArrayList<String>();
+                    vars.add(username.getText().toString());
+                    vars.add(password.getText().toString());
+                    credential.HttpRequest("login",vars);
 
                     HttpRequestTaskManager result = new HttpRequestTaskManager(getApplicationContext());
-
                     result.execute(credential);
                     Log.d("HttpRequestTaskManager", String.valueOf(result));
 

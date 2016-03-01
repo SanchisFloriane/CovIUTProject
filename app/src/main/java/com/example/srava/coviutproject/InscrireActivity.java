@@ -44,21 +44,6 @@ public class InscrireActivity extends Activity {
 
                     Log.d("Inscription", "Inscription Button Pressed !");
 
-                    EditText username = (EditText)findViewById(R.id.username);
-                    EditText password = (EditText)findViewById(R.id.password);
-
-                    Credential credential = new Credential();
-                    credential.userName=username.getText().toString();
-                    credential.password=password.getText().toString();
-
-                    HttpRequestTaskManager result = new HttpRequestTaskManager(getApplicationContext());
-
-                    result.execute(credential);
-                    Log.d("HttpRequestTaskManager", String.valueOf(result));
-
-
-
-
                     break;
             }
         }
