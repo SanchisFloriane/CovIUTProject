@@ -174,7 +174,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
             android:layout_weight="0.06"
-            android:visibility="invisible">
+            android:visibility="visible">
 
             <DatePicker
                 android:layout_width="wrap_content"
