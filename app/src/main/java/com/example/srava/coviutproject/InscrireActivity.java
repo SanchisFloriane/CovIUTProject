@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 
 public class InscrireActivity extends Activity {
 
@@ -42,6 +44,20 @@ public class InscrireActivity extends Activity {
                     EditText mdp2= (EditText)findViewById(R.id.EdTxt_Mdp2);
                     EditText birth= (EditText)findViewById(R.id.EdTxt_Birth);
 
+
+                    Credential credential = new Credential();
+                    ArrayList<String> vars = new ArrayList<String>();
+                    vars.add(nom.getText().toString());
+                    vars.add(Prenom.getText().toString());
+                    vars.add(mail.getText().toString());
+                    vars.add(mdp.getText().toString());
+                    vars.add(birth.getText().toString());
+
+                    credential.HttpRequest("inscription", vars);
+                    HttpRequestTaskManager result = new HttpRequestTaskManager(getApplicationContext());
+                    result.execute(credential);
+
+                    Log.d("HttpRequestTaskManager", String.valueOf(result));
                     Log.d("Inscription", "Inscription Button Pressed !");
 
                     break;
