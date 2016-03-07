@@ -1,18 +1,70 @@
 package com.example.srava.coviutproject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CalendarView;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Calendar;
 
 
 public class VoirTrajetActivity extends Activity {
+
+    DatePicker dapi;
+    LinearLayout ll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voir_trajet);
+
+        dapi = (DatePicker)findViewById(R.id.dp);
+        ll = (LinearLayout)findViewById(R.id.ll3);
+
+        TextView date = (TextView)findViewById(R.id.edt_date);
+        TextView a = (TextView)findViewById(R.id.edt_a);
+        TextView de = (TextView)findViewById(R.id.edt_de);
+
+        date.setOnClickListener(MyListener);
+        a.setOnClickListener(MyListener);
+        de.setOnClickListener(MyListener);
+
+        if(date.isCursorVisible()==true){
+            dapi.setVisibility(View.VISIBLE);
+            dapi.setCalendarViewShown(true);
+            Log.d("ok","ok");
+        }
     }
+
+    public View.OnClickListener MyListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+
+            switch (v.getId()){
+
+                case R.id.edt_date :
+                    break;
+
+                case R.id.edt_a :
+
+                    break;
+
+                case R.id.edt_de :
+
+                    break;
+            }
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
