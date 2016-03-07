@@ -6,4 +6,6 @@
     <string name="title_activity_formadd_trajet">FormaddTrajet</string>
     <string name="title_activity_inscrire">InscrireActivity</string>
     <string name="title_activity_voir_trajet">VoirTrajetActivity</string>
+    <string name="title_activity_voir_trajet2">VoirTrajet2</string>
+    <string name="title_activity_voir_trajet3">VoirTrajet3</string>
 </resources>

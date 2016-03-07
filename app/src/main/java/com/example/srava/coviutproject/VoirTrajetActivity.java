@@ -19,16 +19,12 @@ import java.util.Calendar;
 
 public class VoirTrajetActivity extends Activity {
 
-    DatePicker dapi;
-    LinearLayout ll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voir_trajet);
 
-        dapi = (DatePicker)findViewById(R.id.dp);
-        ll = (LinearLayout)findViewById(R.id.ll3);
 
         TextView date = (TextView)findViewById(R.id.edt_date);
         TextView a = (TextView)findViewById(R.id.edt_a);
@@ -38,11 +34,7 @@ public class VoirTrajetActivity extends Activity {
         a.setOnClickListener(MyListener);
         de.setOnClickListener(MyListener);
 
-        if(date.isCursorVisible()==true){
-            dapi.setVisibility(View.VISIBLE);
-            dapi.setCalendarViewShown(true);
-            Log.d("ok","ok");
-        }
+
     }
 
     public View.OnClickListener MyListener = new View.OnClickListener() {
@@ -52,7 +44,9 @@ public class VoirTrajetActivity extends Activity {
 
             switch (v.getId()){
 
-                case R.id.edt_date :
+                case R.id.btn_rechercherTrajet :
+                    Intent voirTrajet2 = new Intent(getApplicationContext(), VoirTrajet2.class);
+                    startActivity(voirTrajet2);
                     break;
 
                 case R.id.edt_a :

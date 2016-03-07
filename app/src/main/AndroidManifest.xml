@@ -34,6 +34,14 @@
             android:name=".VoirTrajetActivity"
             android:label="@string/title_activity_voir_trajet" >
         </activity>
+        <activity
+            android:name=".VoirTrajet2"
+            android:label="@string/title_activity_voir_trajet2" >
+        </activity>
+        <activity
+            android:name=".VoirTrajet3"
+            android:label="@string/title_activity_voir_trajet3" >
+        </activity>
     </application>
 
 </manifest>
