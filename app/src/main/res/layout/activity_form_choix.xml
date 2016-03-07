@@ -22,9 +22,10 @@
             android:layout_width="209dp"
             android:layout_height="40dp"
             android:text="Je recherche un trajet"
-            android:background="@drawable/shape"
             android:layout_marginTop="275dp"
             android:layout_marginLeft="65dp" />
+            -android:background="@drawable/shape"
+
 
 
         <Button
@@ -32,9 +33,9 @@
             android:layout_width="209dp"
             android:layout_height="40dp"
             android:text="Je propose un trajet"
-            android:background="@drawable/shape"
             android:layout_marginLeft="65dp"
             android:layout_marginTop="50dp" />
+        -android:background="@drawable/shape"
 
     </LinearLayout>
 </RelativeLayout>

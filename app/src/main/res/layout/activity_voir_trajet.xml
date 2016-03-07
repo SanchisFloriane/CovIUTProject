@@ -66,8 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.06"
-            android:layout_marginTop="25dp"
-            android:weightSum="1">
+            android:layout_marginTop="25dp">
 
             <ImageView
                 android:layout_width="20dp"
@@ -80,7 +79,7 @@
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="À"
+                android:text="A"
                 android:id="@+id/lbl_a"
                 android:layout_marginLeft="5dp"
                 android:textColor="#56000000"
@@ -130,10 +129,6 @@
                 android:textColor="#56000000"
                 android:layout_marginLeft="5dp" />
 
-            <CalendarView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/calendarView" />
         </LinearLayout>
 
 
