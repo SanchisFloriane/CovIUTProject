@@ -1,17 +1,67 @@
 package com.example.srava.coviutproject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class VoirTrajet2 extends Activity {
 
+    private ListView activityList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voir_trajet2);
+
+        activityList = (ListView) findViewById(R.id.ltv_trajet);
+
+        ArrayList<HashMap<String, String>> appItemList = new ArrayList<HashMap<String, String>>();
+
+      //création des items et ajout à la liste
+        appItemList.add(fillHashMap("11h50", "8 € / place", "... >> Paris >> Lyon", "2 places restantes", "Antoine M. 19 ans"));
+        // l'adapter ajoute les items de la liste dans la view app_item.xml
+        SimpleAdapter itemsAdapter = new SimpleAdapter(this.getBaseContext(), appItemList, R.layout.app_item,
+                new String[]{"heuretrajet", "place", "destination", "place", "NomAge"}, new int[]{R.id.heuretrajet, R.id.place,
+                R.id.destination, R.id.nbplace, R.id.NomAge});
+
+       activityList.setAdapter(itemsAdapter);
+
+        activityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ////méthode qui permet de récupérer l'id de l'item cliqué et qui permet de lancer différentes activités selon l'id retourné par le clique.
+                if (id == 0) {
+
+                } else if (id == 1) {
+
+                } else if (id == 2) {
+
+
+                } else if (id == 3) {
+
+
+                }
+            }
+        });
+    }
+
+    private HashMap<String, String> fillHashMap(String Heure, String Place, String Destination, String Nbplace, String NomAge){
+        HashMap<String, String> item = new HashMap<String, String>();
+        item.put("heuretrajet", Heure);
+        item.put("place", Place);
+        item.put("destination", Destination);
+        item.put("nbplace", Nbplace);
+        item.put("NomAge", NomAge);
+        return item;
     }
 
     @Override

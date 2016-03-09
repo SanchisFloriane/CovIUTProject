@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -33,6 +34,9 @@ public class VoirTrajetActivity extends Activity {
         date.setOnClickListener(MyListener);
         a.setOnClickListener(MyListener);
         de.setOnClickListener(MyListener);
+
+        Button rechercher = (Button)findViewById(R.id.btn_rechercherTrajet);
+        rechercher.setOnClickListener(MyListener);
 
 
     }

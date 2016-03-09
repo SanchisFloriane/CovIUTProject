@@ -8,13 +8,13 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:layout_alignParentStart="true">
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:weightSum="1">
 
@@ -26,22 +26,22 @@
                 android:textAlignment="center"
                 android:text="Annecy > Lyon"
                 android:layout_weight="1.44"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:gravity="center" />
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:layout_marginTop="40dp">
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/">
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -57,14 +57,14 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Filtrer"
                 android:id="@+id/tw_filtrer"
-                android:layout_marginLeft="250dp"
                 android:clickable="true"
-                android:textColor="#bd7314" />
+                android:textColor="#bd7314"
+                android:layout_marginLeft="240dp" />
 
         </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="148 km - 01h34"
@@ -73,18 +73,18 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="18dp"
         android:layout_marginTop="80dp">
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_width="fill_parent"
+            android:layout_height="17dp">
 
             <TextView
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="17dp"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="26 mars 2016"
                 android:id="@+id/tw_date"
@@ -94,26 +94,26 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="110dp">
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp">
 
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:weightSum="1">
 
                 <ListView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
                     android:id="@+id/ltv_trajet" />
             </LinearLayout>
 
