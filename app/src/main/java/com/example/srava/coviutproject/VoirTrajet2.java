@@ -26,20 +26,23 @@ public class VoirTrajet2 extends Activity {
 
         ArrayList<HashMap<String, String>> appItemList = new ArrayList<HashMap<String, String>>();
 
-      //création des items et ajout à la liste
+        //création des items et ajout à la liste
         appItemList.add(fillHashMap("11h50", "8 € / place", "... >> Paris >> Lyon", "2 places restantes", "Antoine M. 19 ans"));
+        appItemList.add(fillHashMap("10h50", "10 € / place", "... >> Paris >> Lyon", "5 places restantes", "Yohan.Granert 19 ans"));
         // l'adapter ajoute les items de la liste dans la view app_item.xml
         SimpleAdapter itemsAdapter = new SimpleAdapter(this.getBaseContext(), appItemList, R.layout.app_item,
                 new String[]{"heuretrajet", "place", "destination", "place", "NomAge"}, new int[]{R.id.heuretrajet, R.id.place,
                 R.id.destination, R.id.nbplace, R.id.NomAge});
 
-       activityList.setAdapter(itemsAdapter);
+        activityList.setAdapter(itemsAdapter);
 
         activityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ////méthode qui permet de récupérer l'id de l'item cliqué et qui permet de lancer différentes activités selon l'id retourné par le clique.
                 if (id == 0) {
+                Intent voirtrajet3 = new Intent(getApplicationContext(), VoirTrajet3.class);
+                    startActivity(voirtrajet3);
 
                 } else if (id == 1) {
 

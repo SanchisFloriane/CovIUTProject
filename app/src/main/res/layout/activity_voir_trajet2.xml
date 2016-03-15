@@ -24,7 +24,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:id="@+id/tw_nom_trajet"
                 android:textAlignment="center"
-                android:text="Annecy > Lyon"
+                android:text="Annecy >> Lyon"
                 android:layout_weight="1.44"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center" />

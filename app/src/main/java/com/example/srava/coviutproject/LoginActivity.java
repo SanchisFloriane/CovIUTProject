@@ -34,12 +34,6 @@ public class LoginActivity extends Activity {
         TextView inscrire = (TextView)findViewById(R.id.txt_inscire);
 
 
-
-
-
-
-
-
         inscrire.setOnClickListener(MyListener);
         connect.setOnClickListener(MyListener);
     }
