@@ -40,7 +40,7 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
     private static final String FLAG_IDENTIFIANT = "identifiant";
     private static final String FLAG_MESSAGE = "message";
     private static final String FLAG_DATA = "data";
-    private static final String LOGIN_URL = "http://coviut.esy.es/JohanGranert.php";
+    private static final String LOGIN_URL = "http://coviut.esy.es/index.php";
 
 
     @Override
