@@ -21,6 +21,7 @@ import java.nio.charset.StandardCharsets;
 
 import static com.example.srava.coviutproject.OnPostExecuteFunction.OnPostExecuteInscription;
 import static com.example.srava.coviutproject.OnPostExecuteFunction.OnPostExecuteLogin;
+import static com.example.srava.coviutproject.OnPostExecuteFunction.OnPostExecuteProposer;
 
 /**
  * Created by sanchisf on 28/01/2016.
@@ -109,7 +110,10 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
             }else if(identifiant.equals("inscription")){
                 Log.d("if id", "inscription");
                 OnPostExecuteInscription(etat, message, data, context);
-            }
+            }else if(identifiant.equals("proposer")){
+            Log.d("if id", "poposer");
+            OnPostExecuteProposer(etat, message, data, context);
+        }
 
 
         }  catch(JSONException e){
