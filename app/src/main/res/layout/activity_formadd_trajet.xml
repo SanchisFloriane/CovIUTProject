@@ -25,17 +25,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Lieu de départ : "
-            android:id="@+id/textView3"
+            android:text="Date"
+            android:id="@+id/textView6"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.03" />
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="61dp"
-            android:id="@+id/lv_dep"
+        <DatePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/d"
             android:layout_gravity="center_horizontal"
-            android:choiceMode="multipleChoice" />
+            android:layout_weight="0.03" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -46,12 +46,10 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.03" />
 
-        <EditText
-            android:layout_width="match_parent"
+        <TimePicker
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="time"
-            android:ems="10"
-            android:id="@+id/heure_dep"
+            android:id="@+id/Hdep"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.03" />
 
@@ -60,24 +58,6 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Lieu d&apos;arrivée"
-            android:id="@+id/textView6"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.03" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="time"
-            android:ems="10"
-            android:id="@+id/lieu_arrivee"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.03" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="heure d&apos;arrivée"
             android:id="@+id/textView7"
             android:layout_weight="0.03"
             android:layout_gravity="center_horizontal" />
@@ -85,16 +65,15 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="time"
-            android:ems="10"
-            android:id="@+id/heure_arrivee"
+            android:id="@+id/LieuArriv"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="0.03" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Téléphone"
+            android:text="Téléphone du conducteur"
             android:id="@+id/u"
             android:layout_weight="0.03"
             android:layout_gravity="center_horizontal" />
@@ -104,7 +83,7 @@
             android:layout_height="wrap_content"
             android:inputType="time"
             android:ems="10"
-            android:id="@+id/telephone"
+            android:id="@+id/TelProp"
             android:layout_weight="0.03"
             android:layout_gravity="center_horizontal" />
 

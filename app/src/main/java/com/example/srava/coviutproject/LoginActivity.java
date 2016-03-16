@@ -67,7 +67,6 @@ public class LoginActivity extends Activity {
                     HttpRequestTaskManager result = new HttpRequestTaskManager(getApplicationContext());
                     result.execute(credential);
                     Log.d("HttpRequestTaskManager", String.valueOf(result));
-
                     break;
 
                 case R.id.txt_inscire :

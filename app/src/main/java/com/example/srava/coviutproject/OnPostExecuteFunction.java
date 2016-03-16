@@ -29,6 +29,23 @@ public final class OnPostExecuteFunction {
         }
     }
 
+    public static void OnPostExecuteProposer(Integer etat, String message, String Data,Context context){
+        if(etat == 1)
+        {
+            Log.d("context", "" + context);
+
+            Toast.makeText(context, "Trajet proposé", Toast.LENGTH_LONG).show();
+            Intent FormChoix = new Intent(context, com.example.srava.coviutproject.FormChoix.class);
+            FormChoix.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(FormChoix);
+        }
+        else
+        {
+            Log.d("context", "" + context);
+            Toast.makeText(context, "Échec de l'ajout,\nun problême s'est produit", Toast.LENGTH_LONG).show();
+        }
+    }
+
 
     public static void OnPostExecuteInscription(Integer etat, String message, String Data,Context context){
         if(etat == 1)

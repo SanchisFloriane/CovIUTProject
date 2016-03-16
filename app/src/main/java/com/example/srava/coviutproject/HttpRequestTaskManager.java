@@ -21,6 +21,7 @@ import java.nio.charset.StandardCharsets;
 
 import static com.example.srava.coviutproject.OnPostExecuteFunction.OnPostExecuteInscription;
 import static com.example.srava.coviutproject.OnPostExecuteFunction.OnPostExecuteLogin;
+import static com.example.srava.coviutproject.OnPostExecuteFunction.OnPostExecuteProposer;
 
 /**
  * Created by sanchisf on 28/01/2016.
@@ -39,7 +40,7 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
     private static final String FLAG_IDENTIFIANT = "identifiant";
     private static final String FLAG_MESSAGE = "message";
     private static final String FLAG_DATA = "data";
-    private static final String LOGIN_URL = "http://coviut.esy.es/index.php";
+    private static final String LOGIN_URL = "http://coviut.esy.es/JohanGranert.php";
 
 
     @Override
@@ -109,7 +110,10 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
             }else if(identifiant.equals("inscription")){
                 Log.d("if id", "inscription");
                 OnPostExecuteInscription(etat, message, data, context);
-            }
+            }else if(identifiant.equals("proposer")){
+            Log.d("if id", "poposer");
+            OnPostExecuteProposer(etat, message, data, context);
+        }
 
 
         }  catch(JSONException e){
