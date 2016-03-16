@@ -17,7 +17,7 @@ public final class OnPostExecuteFunction {
         {
             Log.d("context", "" + context);
 
-            Toast.makeText(context, "Connecté", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "ConnectÃ©", Toast.LENGTH_LONG).show();
             Intent FormChoix = new Intent(context, com.example.srava.coviutproject.FormChoix.class);
             FormChoix.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(FormChoix);
@@ -25,7 +25,7 @@ public final class OnPostExecuteFunction {
         else
         {
             Log.d("context", "" + context);
-            Toast.makeText(context, "Échec de la connection,\nmauvais mot de passe ou nom d'utilisateur", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Ã‰chec de la connection,\nmauvais mot de passe ou nom d'utilisateur", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -51,7 +51,7 @@ public final class OnPostExecuteFunction {
         if(etat == 1)
         {
             Log.d("context", "" + context);
-            Toast.makeText(context, "Vous êtes inscrit!", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Vous Ãªtes inscrit!", Toast.LENGTH_LONG).show();
             Intent FormChoix = new Intent(context, com.example.srava.coviutproject.FormChoix.class);
             FormChoix.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(FormChoix);
@@ -59,7 +59,7 @@ public final class OnPostExecuteFunction {
         else
         {
             Log.d("context", "" + context);
-            Toast.makeText(context, "Échec de l'inscription,\nveuillez corriger vos erreurs", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Ã‰chec de l'inscription,\nveuillez corriger vos erreurs", Toast.LENGTH_LONG).show();
         }
     }
 

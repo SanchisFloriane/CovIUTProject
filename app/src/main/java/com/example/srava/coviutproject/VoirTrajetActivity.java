@@ -1,70 +1,202 @@
 package com.example.srava.coviutproject;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class VoirTrajetActivity extends Activity {
 
-    DatePicker dapi;
-    LinearLayout ll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voir_trajet);
 
-        dapi = (DatePicker)findViewById(R.id.dp);
-        ll = (LinearLayout)findViewById(R.id.ll3);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
 
         TextView date = (TextView)findViewById(R.id.edt_date);
-        TextView a = (TextView)findViewById(R.id.edt_a);
-        TextView de = (TextView)findViewById(R.id.edt_de);
+        date.setOnFocusChangeListener(FocusListener);
+        date.setText(day + "/" + (month + 1) + "/" + year);
 
-        date.setOnClickListener(MyListener);
-        a.setOnClickListener(MyListener);
-        de.setOnClickListener(MyListener);
+        DatePicker dateP = (DatePicker)findViewById(R.id.calendrier);
+        dateP.setOnClickListener(MyListener);
 
-        if(date.isCursorVisible()==true){
-            dapi.setVisibility(View.VISIBLE);
-            dapi.setCalendarViewShown(true);
-            Log.d("ok","ok");
-        }
+
+        dateP.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), new DatePicker.OnDateChangedListener() {
+
+            @Override
+            public void onDateChanged(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                TextView date = (TextView)findViewById(R.id.edt_date);
+                date.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+
+            }
+        });
+        Button rechercher = (Button)findViewById(R.id.btn_rechercherTrajet);
+        rechercher.setOnClickListener(MyListener);
+
+
+
     }
+
+    public View.OnFocusChangeListener FocusListener = new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+
+            TextView dateFocus = (TextView) findViewById(R.id.edt_date);
+
+            LinearLayout linearLayoudDate = (LinearLayout)findViewById(R.id.llDate);
+            LinearLayout.LayoutParams paramsDate = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 150);
+
+
+            boolean ok = dateFocus.isFocusable();
+
+            if (ok == hasFocus) {
+
+
+
+                paramsDate.height = 450;
+                linearLayoudDate.setVisibility(View.VISIBLE);
+                linearLayoudDate.setLayoutParams(paramsDate);
+
+            } else {
+
+                paramsDate.height = 0;
+                linearLayoudDate.setVisibility(View.INVISIBLE);
+                linearLayoudDate.setLayoutParams(paramsDate);
+            }
+
+
+
+        }
+    };
+
 
     public View.OnClickListener MyListener = new View.OnClickListener() {
 
         @Override
         public void onClick(View v) {
 
+            DatePicker datePi = (DatePicker)findViewById(R.id.calendrier);
+
+            TextView date2 = (TextView)findViewById(R.id.edt_date);
+            TextView a = (TextView)findViewById(R.id.edt_a);
+            TextView de = (TextView)findViewById(R.id.edt_de);
+
             switch (v.getId()){
 
-                case R.id.edt_date :
+                case R.id.btn_rechercherTrajet :
+                    Log.d("ok", de.getText().toString().isEmpty() + " ");
+                    if(de.getText().toString().isEmpty())
+                    {
+
+                        Context c = getApplicationContext();
+                        int duration = Toast.LENGTH_LONG;
+                        String texte = "Veuillez saisir une ville de départ.";
+                        Toast t = Toast.makeText(c, texte, duration);
+                        t.show();
+
+                    }
+                    else if(a.getText().toString().isEmpty())
+                    {
+
+                        Context c = getApplicationContext();
+                        int duration = Toast.LENGTH_LONG;
+                        String texte = "Veuillez saisir une ville d'arrivée.";
+                        Toast t = Toast.makeText(c, texte, duration);
+                        t.show();
+
+                    }
+                    else if(date2.getText().toString().isEmpty())
+                    {
+
+                        Context c = getApplicationContext();
+                        int duration = Toast.LENGTH_LONG;
+                        String texte = "Veuillez saisir une date de départ.";
+                        Toast t = Toast.makeText(c, texte, duration);
+                        t.show();
+
+                    }
+                    else if(!isThisDateValid(date2.getText().toString(), "dd/MM/yyyy"))
+                    {
+
+                        Context c = getApplicationContext();
+                        int duration = Toast.LENGTH_LONG;
+                        String texte = "Veuillez saisir une date de départ valide 'dd/mm/yyyy'.";
+                        Toast t = Toast.makeText(c, texte, duration);
+                        t.show();
+
+                    }
+                    else
+                    {
+                        Intent voirTrajet2 = new Intent(getApplicationContext(), VoirTrajet2.class);
+                        startActivity(voirTrajet2);
+                    }
+
                     break;
 
-                case R.id.edt_a :
+                case R.id.calendrier :
 
-                    break;
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
+                    Log.d("ok", sdf + " ");
+                    String dateString = sdf.format(datePi);
 
-                case R.id.edt_de :
+                    date2.setText(dateString);
 
-                    break;
+
+
             }
         }
     };
+
+
+
+    public boolean isThisDateValid(String dateToValidate, String dateFromat){
+
+        if(dateToValidate == null){
+            return false;
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat(dateFromat);
+        sdf.setLenient(false);
+
+        try {
+
+            //if not valid, it will throw ParseException
+            Date date = sdf.parse(dateToValidate);
+            System.out.println(date);
+
+        } catch (ParseException e) {
+
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

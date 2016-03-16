@@ -43,12 +43,12 @@
 
             <EditText
                 android:layout_width="120dp"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/edt_de"
                 android:layout_weight="0.75"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="2dp"
-                android:textColor="#ff1914ff"/>
+                android:textSize="15dp" />
 
             <ImageButton
                 android:layout_width="20dp"
@@ -87,12 +87,12 @@
 
             <EditText
                 android:layout_width="120dp"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/edt_a"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="2dp"
-                android:textColor="#ff2b39ff"
-                android:layout_weight="0.75" />
+                android:layout_weight="0.75"
+                android:textSize="15dp" />
 
             <ImageButton
                 android:layout_width="20dp"
@@ -133,11 +133,15 @@
 
             <EditText
                 android:layout_width="120dp"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/edt_date"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="0.75"
-                android:layout_marginTop="2dp"/>
+                android:layout_marginTop="2dp"
+                android:clickable="false"
+                android:focusableInTouchMode="true"
+                android:focusable="true"
+                android:textSize="15dp" />
 
             <ImageButton
                 android:layout_width="20dp"
@@ -153,10 +157,27 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:id="@+id/llDate"
+            android:layout_gravity="center"
+            android:visibility="invisible">
+
+            <DatePicker
+                android:layout_width="fill_parent"
+                android:layout_height="140dp"
+                android:id="@+id/calendrier"
+                android:calendarViewShown="false"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.06"
-            android:layout_marginTop="25dp">
+            android:layout_marginTop="25dp"
+            android:id="@+id/linearLayoudDate"
+            android:layout_weight="0.07">
 
             <Button
                 android:id="@+id/btn_rechercherTrajet"
@@ -166,22 +187,6 @@
                 android:background="@drawable/shape"
                 android:layout_marginTop="0dp"
                 android:layout_marginLeft="65dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_weight="0.06"
-            android:visibility="invisible">
-
-            <DatePicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/dp"
-                android:layout_marginLeft="40dp"
-                android:visibility="invisible" />
         </LinearLayout>
 
 

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout android:id="@+id/LinearLayout01" android:orientation="vertical" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10px"
+        android:layout_weight="1"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView android:text="10h50" android:id="@+id/heuretrajet" android:textStyle="bold"
+                android:layout_width="wrap_content" android:layout_height="fill_parent"
+                android:paddingBottom="5dp"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8 € / place"
+                android:id="@+id/place"
+                android:layout_marginLeft="180dp"
+                android:paddingBottom="5dp" />
+
+        </LinearLayout>
+
+        <TextView android:text="... >> Annecy >> Lyon" android:id="@+id/destination" android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingBottom="5dp"></TextView>
+
+        <TextView android:text=" 2 places restantes" android:id="@+id/nbplace" android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingBottom="5dp"></TextView>
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView8"
+            android:src="@drawable/traithorizontal"
+            android:paddingBottom="5dp" />
+
+        <TextView
+            android:text="Didier B. 48 ans"
+            android:id="@+id/NomAge"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:paddingBottom="5dp" />
+
+    </LinearLayout>
+</LinearLayout>
