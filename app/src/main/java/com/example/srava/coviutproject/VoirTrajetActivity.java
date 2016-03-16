@@ -43,7 +43,7 @@ public class VoirTrajetActivity extends Activity {
         date.setText(day + "/" + (month + 1) + "/" + year);
 
         DatePicker dateP = (DatePicker)findViewById(R.id.calendrier);
-        dateP.setOnClickListener(MyListener);
+
 
 
         dateP.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), new DatePicker.OnDateChangedListener() {
@@ -52,6 +52,7 @@ public class VoirTrajetActivity extends Activity {
             public void onDateChanged(DatePicker datePicker, int year, int month, int dayOfMonth) {
                 TextView date = (TextView)findViewById(R.id.edt_date);
                 date.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                Log.d("ok","ok");
 
             }
         });
@@ -89,7 +90,7 @@ public class VoirTrajetActivity extends Activity {
                 linearLayoudDate.setLayoutParams(paramsDate);
             }
 
-
+            Log.d("ok","okiii");
 
         }
     };
@@ -157,14 +158,6 @@ public class VoirTrajetActivity extends Activity {
                     }
 
                     break;
-
-                case R.id.calendrier :
-
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
-                    Log.d("ok", sdf + " ");
-                    String dateString = sdf.format(datePi);
-
-                    date2.setText(dateString);
 
 
 
