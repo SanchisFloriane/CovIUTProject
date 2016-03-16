@@ -3,24 +3,89 @@ package com.example.srava.coviutproject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class VoirTrajet2 extends Activity {
 
     private ListView activityList;
+    private String depart = null;
+    private String arrivee = null;
+    private String date = null;
+    private static String datefinal = null;
+    private static List<String> month = new ArrayList<String>();
+    private int numeroMonth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voir_trajet2);
+
+        month.add("Janvier");
+        month.add("Février");
+        month.add("Mars");
+        month.add("Avril");
+        month.add("Mai");
+        month.add("Juin");
+        month.add("Juillet");
+        month.add("Août");
+        month.add("Septembre");
+        month.add("Octobre");
+        month.add("Novembre");
+        month.add("Décembre");
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            depart = extras.getString("depart");
+            arrivee = extras.getString("arrivee");
+            date = extras.getString("date");
+            numeroMonth = extras.getInt("numeroMonth");
+        }
+
+        Credential credential = new Credential();
+        ArrayList<String> vars = new ArrayList<String>();
+        vars.add(depart);
+        vars.add(arrivee);
+        vars.add(date);
+        credential.HttpRequest("searchTrajet",vars);
+
+        HttpRequestTaskManager result = new HttpRequestTaskManager(getApplicationContext());
+        result.execute(credential);
+        Log.d("HttpRequestTaskManager", String.valueOf(result));
+
+        TextView tw_depart = (TextView)findViewById(R.id.tw_nom_trajet);
+        tw_depart.setText(depart + " >> " + arrivee);
+
+        TextView tw_date = (TextView)findViewById(R.id.tw_date);
+
+       for(String m : month){
+
+           int value = month.indexOf(m);
+
+           if(numeroMonth == value){
+
+               String day = date.charAt(0) + "" + date.charAt(1);
+
+               String year = date.charAt(5) + "" + date.charAt(6) + "" + date.charAt(7) + "" + date.charAt(8);
+
+               date = day + " " + m + " " + year;
+
+
+           }
+       }
+
+       tw_date.setText(date);
 
         activityList = (ListView) findViewById(R.id.ltv_trajet);
 
@@ -56,6 +121,12 @@ public class VoirTrajet2 extends Activity {
             }
         });
     }
+
+    public static char intToChar(int i){
+        String s = ""+i;
+        return s.charAt(0);
+    }
+
 
     private HashMap<String, String> fillHashMap(String Heure, String Place, String Destination, String Nbplace, String NomAge){
         HashMap<String, String> item = new HashMap<String, String>();

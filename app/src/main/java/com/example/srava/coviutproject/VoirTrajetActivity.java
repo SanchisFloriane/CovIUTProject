@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +29,7 @@ import java.util.Date;
 
 public class VoirTrajetActivity extends Activity {
 
-
+    private int numeroM = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,25 +41,76 @@ public class VoirTrajetActivity extends Activity {
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
+        numeroM = month+1;
+        Log.d("y", year + " ");
+        Log.d("m", month+1 + "");
+        Log.d("d", day + "");
+
+
         TextView date = (TextView)findViewById(R.id.edt_date);
         date.setOnFocusChangeListener(FocusListener);
+
         date.setText(day + "/" + (month + 1) + "/" + year);
 
         DatePicker dateP = (DatePicker)findViewById(R.id.calendrier);
-
-
 
         dateP.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), new DatePicker.OnDateChangedListener() {
 
             @Override
             public void onDateChanged(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                TextView date = (TextView)findViewById(R.id.edt_date);
-                date.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                TextView date = (TextView) findViewById(R.id.edt_date);
+                if(month+1<10){
+                    date.setText(dayOfMonth + "/0" + (month + 1) + "/" + year);
+                } else {
+                    date.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                }
+
 
             }
         });
-        Button rechercher = (Button)findViewById(R.id.btn_rechercherTrajet);
+
+        date.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                DatePicker dateP = (DatePicker)findViewById(R.id.calendrier);
+
+                String day = s.charAt(0) + "" + s.charAt(1);
+                String month;
+                if(s.charAt(3) == 0){
+                    month = s.charAt(4) + "";
+                }
+                else {
+
+                    month = s.charAt(3) + "" + s.charAt(4);
+                }
+                String year = s.charAt(6) + "" + s.charAt(7) + "" + s.charAt(8) + "" + s.charAt(9);
+
+                int dayI = Integer.parseInt(day);
+                int monthI = Integer.parseInt(month);
+                int yearI = Integer.parseInt(year);
+
+                // dateP.updateDate(yearI, monthI, dayI);
+
+            }
+
+
+        });
+
+                 Button rechercher = (Button) findViewById(R.id.btn_rechercherTrajet);
         rechercher.setOnClickListener(MyListener);
+
 
 
 
@@ -72,24 +126,24 @@ public class VoirTrajetActivity extends Activity {
             LinearLayout.LayoutParams paramsDate = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 150);
 
 
-            boolean ok = dateFocus.isFocusable();
-
-            if (ok == hasFocus) {
-
-
+            if (hasFocus) {
 
                 paramsDate.height = 450;
                 linearLayoudDate.setVisibility(View.VISIBLE);
                 linearLayoudDate.setLayoutParams(paramsDate);
 
             } else {
-
+                Log.d("d", "ok");
                 paramsDate.height = 0;
                 linearLayoudDate.setVisibility(View.INVISIBLE);
                 linearLayoudDate.setLayoutParams(paramsDate);
+                v.clearFocus();
+                Log.d("d", "oki");
+
+
             }
 
-            Log.d("ok","okiii");
+
 
         }
     };
@@ -153,14 +207,16 @@ public class VoirTrajetActivity extends Activity {
                     else
                     {
                         Intent voirTrajet2 = new Intent(getApplicationContext(), VoirTrajet2.class);
+                        voirTrajet2.putExtra("depart", de.getText().toString());
+                        voirTrajet2.putExtra("arrivee", a.getText().toString());
+                        voirTrajet2.putExtra("date", date2.getText().toString());
+                        voirTrajet2.putExtra("numeroMonth", numeroM);
                         startActivity(voirTrajet2);
                     }
 
                     break;
 
-                default :
-                Log.d("aa","aa");
-                    break;
+
             }
         }
     };

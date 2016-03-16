@@ -27,7 +27,8 @@
                 android:text="Annecy >> Lyon"
                 android:layout_weight="1.44"
                 android:layout_gravity="center_horizontal"
-                android:gravity="center" />
+                android:gravity="center"
+                android:textSize="20dp" />
         </LinearLayout>
 
     </LinearLayout>
@@ -41,7 +42,8 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -49,46 +51,32 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="2 trajets"
                 android:id="@+id/tw_nb_trajet"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Filtrer"
-                android:id="@+id/tw_filtrer"
-                android:clickable="true"
-                android:textColor="#bd7314"
-                android:layout_marginLeft="240dp" />
+                android:textStyle="bold"
+                android:textSize="16dp" />
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="148 km - 01h34"
-            android:id="@+id/tw_nb_km_heure" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="18dp"
+        android:layout_height="25dp"
         android:layout_marginTop="80dp">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="17dp">
+            android:layout_height="25dp">
 
             <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="17dp"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="26 mars 2016"
                 android:id="@+id/tw_date"
-                android:background="#bd7314" />
+                android:background="#bd7314"
+                android:textSize="18dp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -96,7 +84,7 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="110dp">
+        android:layout_marginTop="120dp">
 
         <LinearLayout
             android:orientation="vertical"
