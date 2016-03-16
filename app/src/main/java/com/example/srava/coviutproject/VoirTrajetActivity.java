@@ -52,7 +52,6 @@ public class VoirTrajetActivity extends Activity {
             public void onDateChanged(DatePicker datePicker, int year, int month, int dayOfMonth) {
                 TextView date = (TextView)findViewById(R.id.edt_date);
                 date.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
-                Log.d("ok","ok");
 
             }
         });
@@ -159,8 +158,9 @@ public class VoirTrajetActivity extends Activity {
 
                     break;
 
-
-
+                default :
+                Log.d("aa","aa");
+                    break;
             }
         }
     };
