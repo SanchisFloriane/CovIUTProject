@@ -12,7 +12,10 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,6 +29,9 @@ public class VoirTrajet2 extends Activity {
     private static String datefinal = null;
     private static List<String> month = new ArrayList<String>();
     private int numeroMonth;
+    private SimpleAdapter itemsAdapter;
+
+    private ArrayList<HashMap<String, String>> appItemList = new ArrayList<HashMap<String, String>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,60 +59,48 @@ public class VoirTrajet2 extends Activity {
             numeroMonth = extras.getInt("numeroMonth");
         }
 
-        Credential credential = new Credential();
-        ArrayList<String> vars = new ArrayList<String>();
-        vars.add(depart);
-        vars.add(arrivee);
-        vars.add(date);
-        credential.HttpRequest("searchTrajet",vars);
-
-        HttpRequestTaskManager result = new HttpRequestTaskManager(getApplicationContext());
-        result.execute(credential);
-        Log.d("HttpRequestTaskManager", String.valueOf(result));
 
         TextView tw_depart = (TextView)findViewById(R.id.tw_nom_trajet);
         tw_depart.setText(depart + " >> " + arrivee);
 
         TextView tw_date = (TextView)findViewById(R.id.tw_date);
-
-       for(String m : month){
-
-           int value = month.indexOf(m);
-
-           if(numeroMonth == value){
-
-               String day = date.charAt(0) + "" + date.charAt(1);
-
-               String year = date.charAt(5) + "" + date.charAt(6) + "" + date.charAt(7) + "" + date.charAt(8);
-
-               date = day + " " + m + " " + year;
-
-
-           }
-       }
-
-       tw_date.setText(date);
+        tw_date.setText(date);
 
         activityList = (ListView) findViewById(R.id.ltv_trajet);
 
-        ArrayList<HashMap<String, String>> appItemList = new ArrayList<HashMap<String, String>>();
+        itemsAdapter = new SimpleAdapter(this.getBaseContext(), appItemList, R.layout.app_item,
+                new String[]{"heuretrajet", "prix", "destination", "nbplace", "NomAge"}, new int[]{R.id.heuretrajet, R.id.place, R.id.destination, R.id.nbplace, R.id.NomAge});
+        Log.d("ok", "oka");
+     /*   activityList.setAdapter(itemsAdapter);
+        Log.d("ok", "oka");*/
 
-        //création des items et ajout à la liste
-        appItemList.add(fillHashMap("11h50", "8 € / place", "... >> Paris >> Lyon", "2 places restantes", "Antoine M. 19 ans"));
-        appItemList.add(fillHashMap("10h50", "10 € / place", "... >> Paris >> Lyon", "5 places restantes", "Yohan.Granert 19 ans"));
-        // l'adapter ajoute les items de la liste dans la view app_item.xml
-        SimpleAdapter itemsAdapter = new SimpleAdapter(this.getBaseContext(), appItemList, R.layout.app_item,
-                new String[]{"heuretrajet", "place", "destination", "place", "NomAge"}, new int[]{R.id.heuretrajet, R.id.place,
-                R.id.destination, R.id.nbplace, R.id.NomAge});
+        Credential credential = new Credential();
+        ArrayList<String> vars = new ArrayList<String>();
+        vars.add(depart);
+        vars.add(arrivee);
 
-        activityList.setAdapter(itemsAdapter);
+        SimpleDateFormat input = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat output = new SimpleDateFormat("yyyy/MM/dd");
+        try {
+            Date oneWayTripDate = input.parse(date);                 // parse input
+            String formats = output.format(oneWayTripDate);        // format output
+
+            vars.add(formats);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        credential.HttpRequest("searchtrajet", vars);
+
+        HttpRequestTaskManager result = new HttpRequestTaskManager(getApplicationContext());
+        result.execute(credential);
+
 
         activityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ////méthode qui permet de récupérer l'id de l'item cliqué et qui permet de lancer différentes activités selon l'id retourné par le clique.
                 if (id == 0) {
-                Intent voirtrajet3 = new Intent(getApplicationContext(), VoirTrajet3.class);
+                    Intent voirtrajet3 = new Intent(getApplicationContext(), VoirTrajet3.class);
                     startActivity(voirtrajet3);
 
                 } else if (id == 1) {
@@ -127,11 +121,18 @@ public class VoirTrajet2 extends Activity {
         return s.charAt(0);
     }
 
+    public void retournerTrajet(Trajet t){
 
-    private HashMap<String, String> fillHashMap(String Heure, String Place, String Destination, String Nbplace, String NomAge){
+
+        //création des items et ajout à la liste
+        appItemList.add(fillHashMap(t.getHEUREDEPART_TRAJET(), t.getPRIX_TRAJET() + " €/place", "... >> " + depart + " >> " + arrivee, t.getNBPLACE_TRAJET() + " restante(s)", "nom prenom age"));
+
+    }
+
+    private HashMap<String, String> fillHashMap(String Heure, String Prix, String Destination, String Nbplace, String NomAge){
         HashMap<String, String> item = new HashMap<String, String>();
         item.put("heuretrajet", Heure);
-        item.put("place", Place);
+        item.put("prix", Prix);
         item.put("destination", Destination);
         item.put("nbplace", Nbplace);
         item.put("NomAge", NomAge);
