@@ -120,14 +120,14 @@ public class VoirTrajet2 extends Activity {
         String s = ""+i;
         return s.charAt(0);
     }
-
+/*
     public void retournerTrajet(Trajet t){
 
 
         //création des items et ajout à la liste
         appItemList.add(fillHashMap(t.getHEUREDEPART_TRAJET(), t.getPRIX_TRAJET() + " €/place", "... >> " + depart + " >> " + arrivee, t.getNBPLACE_TRAJET() + " restante(s)", "nom prenom age"));
 
-    }
+    }*/
 
     private HashMap<String, String> fillHashMap(String Heure, String Prix, String Destination, String Nbplace, String NomAge){
         HashMap<String, String> item = new HashMap<String, String>();

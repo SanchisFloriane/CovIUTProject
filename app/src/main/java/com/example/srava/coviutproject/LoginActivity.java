@@ -2,6 +2,7 @@ package com.example.srava.coviutproject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -17,25 +18,31 @@ import java.util.ArrayList;
 
 public class LoginActivity extends Activity {
 
-    private static final String FLAG_SUCCESS = "success";
-    private static final String FLAG_MESSAGE = "message";
-    private static final String LOGIN_URL = "http://coviut.esy.es/index.php";
-
-
+    private MyShotAdaptater sauvegardeShotsDB;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        sauvegardeShotsDB = new MyShotAdaptater(getBaseContext());
+        sauvegardeShotsDB.open();
+        Cursor curs = sauvegardeShotsDB.getAllData();
+
+        Log.d("curs",""+curs);
+        if(!((curs != null) && (curs.getCount() > 0))){
+            setContentView(R.layout.activity_login);
+            Button connect = (Button)findViewById(R.id.btn_connect);
+            TextView inscrire = (TextView)findViewById(R.id.txt_inscire);
+            inscrire.setOnClickListener(MyListener);
+            connect.setOnClickListener(MyListener);
+        }else{
+            Intent FormChoix = new Intent(getApplicationContext(), com.example.srava.coviutproject.FormChoix.class);
+            FormChoix.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getApplicationContext().startActivity(FormChoix);
+        }
 
 
-        Button connect = (Button)findViewById(R.id.btn_connect);
-        TextView inscrire = (TextView)findViewById(R.id.txt_inscire);
 
-
-        inscrire.setOnClickListener(MyListener);
-        connect.setOnClickListener(MyListener);
     }
 
     public View.OnClickListener MyListener = new View.OnClickListener() {
@@ -61,6 +68,7 @@ public class LoginActivity extends Activity {
                     HttpRequestTaskManager result = new HttpRequestTaskManager(getApplicationContext());
                     result.execute(credential);
                     Log.d("HttpRequestTaskManager", String.valueOf(result));
+
                     break;
 
                 case R.id.txt_inscire :

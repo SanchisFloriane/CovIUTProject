@@ -2,14 +2,17 @@ package com.example.srava.coviutproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.JsonReader;
 import android.util.Log;
 import android.widget.Toast;
+import org.json.JSONObject;
+import org.json.JSONStringer;
 
-import java.util.StringTokenizer;
 
-/**
- * Created by merciant on 01/03/2016.
- */
+
+import java.io.StringReader;
+
+
 public final class OnPostExecuteFunction {
 
     private OnPostExecuteFunction(){};
@@ -17,9 +20,24 @@ public final class OnPostExecuteFunction {
     public static void OnPostExecuteLogin(Integer etat, String message, String Data,Context context){
         if(etat == 1)
         {
+            Log.d("data", "" + Data);
             Log.d("context", "" + context);
-
+            try {
+                JSONObject jsonResponse = new JSONObject(Data);
+                Log.d("json?",""+jsonResponse.toString());
+                MyShotAdaptater sauvegardeShotsDB;
+                sauvegardeShotsDB = new MyShotAdaptater(context);
+                sauvegardeShotsDB.open();
+                sauvegardeShotsDB.insertShot(Integer.parseInt(jsonResponse.getString("ID_PERSONNE")),
+                                             jsonResponse.getString("MAIL_PERSONNE"),
+                                             jsonResponse.getString("NOM_PERSONNE"),
+                                             jsonResponse.getString("PRENOM_PERSONNE"),
+                                             jsonResponse.getString("TEL_PERSONNE"));
+            }catch (org.json.JSONException e){
+                Log.d("exception", "something went fucking wrong with the string to json" + e.getMessage());
+            }
             Toast.makeText(context, "Connecté", Toast.LENGTH_LONG).show();
+
             Intent FormChoix = new Intent(context, com.example.srava.coviutproject.FormChoix.class);
             FormChoix.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(FormChoix);
@@ -95,10 +113,10 @@ public final class OnPostExecuteFunction {
             fin = fin -1;
             String NBPLACETRAJET  = Data.substring(longDebut, fin);
 
-            Trajet newTrajet = new Trajet(IDTRAJET, HEURETRAJET, TELTRAJET, PRIXTRAJET, NBPLACETRAJET);
+           //Trajet newTrajet = new Trajet(IDTRAJET, HEURETRAJET, TELTRAJET, PRIXTRAJET, NBPLACETRAJET);
             VoirTrajet2 vt = new VoirTrajet2();
 
-            vt.retournerTrajet(newTrajet);
+            //vt.retournerTrajet(newTrajet);
 
 
         }
@@ -112,6 +130,20 @@ public final class OnPostExecuteFunction {
     public static void OnPostExecuteInscription(Integer etat, String message, String Data,Context context){
         if(etat == 1)
         {
+            try {
+                JSONObject jsonResponse = new JSONObject(Data);
+                Log.d("json?",""+jsonResponse.toString());
+                MyShotAdaptater sauvegardeShotsDB;
+                sauvegardeShotsDB = new MyShotAdaptater(context);
+                sauvegardeShotsDB.open();
+                sauvegardeShotsDB.insertShot(Integer.parseInt(jsonResponse.getString("ID_PERSONNE")),
+                        jsonResponse.getString("MAIL_PERSONNE"),
+                        jsonResponse.getString("NOM_PERSONNE"),
+                        jsonResponse.getString("PRENOM_PERSONNE"),
+                        jsonResponse.getString("TEL_PERSONNE"));
+            }catch (org.json.JSONException e){
+                Log.d("exception", "something went fucking wrong with the string to json" + e.getMessage());
+            }
             Log.d("context", "" + context);
             Toast.makeText(context, "Vous êtes inscrit!", Toast.LENGTH_LONG).show();
             Intent FormChoix = new Intent(context, com.example.srava.coviutproject.FormChoix.class);
@@ -124,11 +156,6 @@ public final class OnPostExecuteFunction {
             Toast.makeText(context, "Échec de l'inscription,\nveuillez corriger vos erreurs", Toast.LENGTH_LONG).show();
         }
     }
-
-
-
-
-
 
 
 
