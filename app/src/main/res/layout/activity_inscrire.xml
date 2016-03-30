@@ -61,31 +61,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/EdTxt_Nom"
-                android:hint="Nom" />
+                android:hint="Nom"
+                android:focusable="true" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/EdTxt_Prenom"
-                android:hint="Prénom" />
+                android:hint="Prénom"
+                android:focusable="true" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/EdTxt_Mail"
-                android:hint="Mail" />
+                android:hint="Mail"
+                android:focusable="true" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/EdTxt_Mdp"
-                android:hint="Mot de passe" />
+                android:hint="Mot de passe"
+                android:password="true"
+                android:focusable="true" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/EdTxt_Mdp2"
-                android:hint="Confirmer le mot de passe" />
+                android:hint="Confirmer le mot de passe"
+                android:password="true"
+                android:focusable="true" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -93,7 +100,13 @@
                 android:inputType="date"
                 android:ems="10"
                 android:id="@+id/EdTxt_Birth"
-                android:hint="Date de naissance" />
+                android:hint="Date de naissance"
+                android:onClick="showDatePickerDialog"
+                android:enabled="true"
+                android:clickable="true"
+                android:editable="false"
+                android:focusable="false"/>
+
         </LinearLayout>
 
         <LinearLayout

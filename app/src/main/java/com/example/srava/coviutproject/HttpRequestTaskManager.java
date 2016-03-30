@@ -24,9 +24,7 @@ import static com.example.srava.coviutproject.OnPostExecuteFunction.OnPostExecut
 import static com.example.srava.coviutproject.OnPostExecuteFunction.OnPostExecuteProposer;
 import static com.example.srava.coviutproject.OnPostExecuteFunction.OnPostExecuteTrajet;
 
-/**
- * Created by sanchisf on 28/01/2016.
- */
+
 public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONObject>
 {
 
