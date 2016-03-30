@@ -35,6 +35,15 @@
             android:text="Je propose un trajet"
             android:layout_marginLeft="65dp"
             android:layout_marginTop="50dp" />
+
+        <Button
+            android:layout_width="209dp"
+            android:layout_height="40dp"
+            android:text="Se déconnecter"
+            android:id="@+id/buttonDec"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp" />
+
         -android:background="@drawable/shape"
 
     </LinearLayout>

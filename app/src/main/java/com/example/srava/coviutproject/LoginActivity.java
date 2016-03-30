@@ -28,19 +28,22 @@ public class LoginActivity extends Activity {
         sauvegardeShotsDB.open();
         Cursor curs = sauvegardeShotsDB.getAllData();
 
-        Log.d("curs",""+curs);
+        Log.d("curs", "" + curs);
         if(!((curs != null) && (curs.getCount() > 0))){
             setContentView(R.layout.activity_login);
+            Log.d("test","sdfsdfsdf");
             Button connect = (Button)findViewById(R.id.btn_connect);
             TextView inscrire = (TextView)findViewById(R.id.txt_inscire);
             inscrire.setOnClickListener(MyListener);
             connect.setOnClickListener(MyListener);
+            sauvegardeShotsDB.close();
         }else{
+            Log.d("test","tetststts");
+            sauvegardeShotsDB.close();
             Intent FormChoix = new Intent(getApplicationContext(), com.example.srava.coviutproject.FormChoix.class);
             FormChoix.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getApplicationContext().startActivity(FormChoix);
         }
-
 
 
     }

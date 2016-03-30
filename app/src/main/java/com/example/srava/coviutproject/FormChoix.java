@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 
 public class FormChoix extends Activity {
@@ -20,12 +21,15 @@ public class FormChoix extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_choix);
-
-
+    }
+    protected  void onResume(){
+        super.onResume();
+        setContentView(R.layout.activity_form_choix);
         Button addTrajet = (Button)findViewById(R.id.btn_addTrajet);
-        addTrajet.setOnClickListener(MyListener);
-
+        Button deco = (Button)findViewById(R.id.buttonDec);
         Button voirTrajet = (Button)findViewById(R.id.btn_voirTrajet);
+        addTrajet.setOnClickListener(MyListener);
+        deco.setOnClickListener(MyListener);
         voirTrajet.setOnClickListener(MyListener);
     }
 
@@ -44,6 +48,14 @@ public class FormChoix extends Activity {
                 case R.id.btn_voirTrajet :
                     Intent voirTrajet = new Intent(getApplicationContext(), VoirTrajetActivity.class);
                     startActivity(voirTrajet);
+                    break;
+                case R.id.buttonDec :
+                    sauvegardeShotsDB = new MyShotAdaptater(getBaseContext());
+                    sauvegardeShotsDB.open();
+                    sauvegardeShotsDB.removeAllShot();
+                    Intent log = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(log);
+                    sauvegardeShotsDB.close();
                     break;
 
             }
@@ -80,20 +92,18 @@ public class FormChoix extends Activity {
 
         Log.d("curs", "" + curs);
         if((curs != null) && (curs.getCount() > 0)){
+            sauvegardeShotsDB.close();
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }else{
+            sauvegardeShotsDB.close();
+            setContentView(R.layout.activity_form_choix);
             super.onBackPressed();
         }
         // Otherwise defer to system default behavior.
         super.onBackPressed();
-    }
-    public void onRestart(){
-        super.onRestart();
-        setContentView(R.layout.activity_form_choix);
-
     }
 
 }

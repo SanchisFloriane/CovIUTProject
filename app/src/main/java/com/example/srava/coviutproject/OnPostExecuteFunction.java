@@ -33,6 +33,7 @@ public final class OnPostExecuteFunction {
                                              jsonResponse.getString("NOM_PERSONNE"),
                                              jsonResponse.getString("PRENOM_PERSONNE"),
                                              jsonResponse.getString("TEL_PERSONNE"));
+                sauvegardeShotsDB.close();
             }catch (org.json.JSONException e){
                 Log.d("exception", "something went fucking wrong with the string to json" + e.getMessage());
             }
