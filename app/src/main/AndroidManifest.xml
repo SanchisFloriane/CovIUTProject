@@ -11,37 +11,44 @@
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         <activity
             android:name=".LoginActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
         <activity
             android:name=".FormChoix"
-            android:label="@string/title_activity_form_choix" >
+            android:label="@string/title_activity_form_choix"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".FormaddTrajet"
-            android:label="@string/title_activity_formadd_trajet" >
+            android:label="@string/title_activity_formadd_trajet"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".InscrireActivity"
-            android:label="@string/title_activity_inscrire" >
+            android:label="@string/title_activity_inscrire"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".VoirTrajetActivity"
-            android:label="@string/title_activity_voir_trajet" >
+            android:label="@string/title_activity_voir_trajet"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
             android:name=".VoirTrajet2"
-            android:label="@string/title_activity_voir_trajet2" >
+            android:label="@string/title_activity_voir_trajet2"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".VoirTrajet3"
-            android:label="@string/title_activity_voir_trajet3" >
+            android:label="@string/title_activity_voir_trajet3"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

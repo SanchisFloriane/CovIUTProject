@@ -2,6 +2,7 @@ package com.example.srava.coviutproject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 
 import java.util.ArrayList;
 
@@ -43,7 +45,8 @@ public class InscrireActivity extends Activity {
                     EditText mdp = (EditText)findViewById(R.id.EdTxt_Mdp);
                     EditText mdp2= (EditText)findViewById(R.id.EdTxt_Mdp2);
                     EditText birth= (EditText)findViewById(R.id.EdTxt_Birth);
-
+                    RadioGroup rad = (RadioGroup)findViewById(R.id.RadGroup);
+                    Integer id = rad.getCheckedRadioButtonId();
 
                     Credential credential = new Credential();
                     ArrayList<String> vars = new ArrayList<String>();
@@ -52,6 +55,12 @@ public class InscrireActivity extends Activity {
                     vars.add(mail.getText().toString());
                     vars.add(mdp.getText().toString());
                     vars.add(birth.getText().toString());
+                    Log.d("id",""+id);
+                    if(id.equals("r1")){
+                        vars.add("h");
+                    }else{
+                        vars.add("f");
+                    }
 
                     credential.HttpRequest("inscription", vars);
                     HttpRequestTaskManager result = new HttpRequestTaskManager(getApplicationContext());
@@ -85,5 +94,17 @@ public class InscrireActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+
+
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+
+        // Otherwise defer to system default behavior
     }
 }

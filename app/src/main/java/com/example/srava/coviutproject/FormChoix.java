@@ -97,13 +97,8 @@ public class FormChoix extends Activity {
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-        }else{
-            sauvegardeShotsDB.close();
-            setContentView(R.layout.activity_form_choix);
-            super.onBackPressed();
         }
-        // Otherwise defer to system default behavior.
-        super.onBackPressed();
+        // Otherwise defer to system default behavior
     }
 
 }

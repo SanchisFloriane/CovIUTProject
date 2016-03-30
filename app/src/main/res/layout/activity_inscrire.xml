@@ -38,13 +38,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:id="@+id/RadGroup">
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Homme"
-                    android:id="@+id/radioButton"
+                    android:id="@+id/r1"
                     android:checked="false"
                     android:layout_marginRight="25dp" />
 
@@ -52,7 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Femme"
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/r2"
                     android:checked="false" />
             </RadioGroup>
 

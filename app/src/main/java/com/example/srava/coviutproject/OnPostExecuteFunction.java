@@ -137,6 +137,7 @@ public final class OnPostExecuteFunction {
                 MyShotAdaptater sauvegardeShotsDB;
                 sauvegardeShotsDB = new MyShotAdaptater(context);
                 sauvegardeShotsDB.open();
+                sauvegardeShotsDB.removeAllShot();
                 sauvegardeShotsDB.insertShot(Integer.parseInt(jsonResponse.getString("ID_PERSONNE")),
                         jsonResponse.getString("MAIL_PERSONNE"),
                         jsonResponse.getString("NOM_PERSONNE"),
