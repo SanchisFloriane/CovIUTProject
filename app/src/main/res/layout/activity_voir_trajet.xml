@@ -5,7 +5,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.srava.coviutproject.VoirTrajetActivity"
-    android:background="#ffffffff">
+    android:background="#ff000000">
 
 
     <LinearLayout
@@ -38,7 +38,7 @@
                 android:enabled="false"
                 android:editable="false"
                 android:layout_marginLeft="5dp"
-                android:textColor="#56000000"
+                android:textColor="#ffffff"
                 android:layout_marginTop="2dp" />
 
             <EditText
@@ -50,7 +50,10 @@
                 android:layout_marginTop="2dp"
                 android:textSize="15dp"
                 android:focusableInTouchMode="true"
-                android:focusable="true" />
+                android:focusable="true"
+                android:inputType="text"
+                android:singleLine="true"
+                android:hint=""/>
 
             <ImageButton
                 android:layout_width="20dp"
@@ -84,7 +87,7 @@
                 android:text="À"
                 android:id="@+id/lbl_a"
                 android:layout_marginLeft="5dp"
-                android:textColor="#56000000"
+                android:textColor="#ffffff"
                 android:layout_marginTop="2dp" />
 
             <EditText
@@ -96,7 +99,10 @@
                 android:layout_weight="0.75"
                 android:textSize="15dp"
                 android:focusableInTouchMode="true"
-                android:focusable="true" />
+                android:focusable="true"
+                android:inputType="text"
+                android:singleLine="true"
+                android:hint="" />
 
             <ImageButton
                 android:layout_width="20dp"
@@ -131,7 +137,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Date"
                 android:id="@+id/lbl_date"
-                android:textColor="#56000000"
+                android:textColor="#ffffff"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="2dp" />
 
@@ -145,7 +151,9 @@
                 android:clickable="false"
                 android:focusableInTouchMode="true"
                 android:focusable="true"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:inputType="date"
+                android:singleLine="true" />
 
             <ImageButton
                 android:layout_width="20dp"
@@ -190,10 +198,10 @@
                 android:text="Rechercher"
                 android:background="@drawable/shape"
                 android:layout_marginTop="0dp"
-                android:layout_marginLeft="65dp" />
+                android:layout_marginLeft="65dp"
+                android:textColor="#ffffff" />
         </LinearLayout>
 
 
     </LinearLayout>
-
 </RelativeLayout>

@@ -2,6 +2,28 @@ package com.example.srava.coviutproject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
+
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -30,6 +52,8 @@ import java.util.Date;
 public class VoirTrajetActivity extends Activity {
 
     private int numeroM = 0;
+    private TextView departT;
+    private TextView arriveeT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,11 +70,19 @@ public class VoirTrajetActivity extends Activity {
         Log.d("m", month+1 + "");
         Log.d("d", day + "");
 
+        departT = (TextView)findViewById(R.id.edt_de);
+        arriveeT = (TextView)findViewById(R.id.edt_a);
+
+        departT.setOnFocusChangeListener(FocusListener);
+        arriveeT.setOnFocusChangeListener(FocusListener);
 
         TextView date = (TextView)findViewById(R.id.edt_date);
-        date.setOnFocusChangeListener(FocusListener);
 
-        date.setText(day + "/" + (month + 1) + "/" + year);
+        if (month + 1 < 10) {
+            date.setText(day + "/0" + (month + 1) + "/" + year);
+        } else {
+            date.setText(day + "/" + (month + 1) + "/" + year);
+        }
 
         DatePicker dateP = (DatePicker)findViewById(R.id.calendrier);
 
@@ -59,7 +91,8 @@ public class VoirTrajetActivity extends Activity {
             @Override
             public void onDateChanged(DatePicker datePicker, int year, int month, int dayOfMonth) {
                 TextView date = (TextView) findViewById(R.id.edt_date);
-                if(month+1<10){
+                if (month + 1 < 10) {
+
                     date.setText(dayOfMonth + "/0" + (month + 1) + "/" + year);
                 } else {
                     date.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
@@ -68,7 +101,7 @@ public class VoirTrajetActivity extends Activity {
 
             }
         });
-
+        date.setOnFocusChangeListener(FocusListener);
         date.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -108,13 +141,14 @@ public class VoirTrajetActivity extends Activity {
 
         });
 
-                 Button rechercher = (Button) findViewById(R.id.btn_rechercherTrajet);
+        Button rechercher = (Button) findViewById(R.id.btn_rechercherTrajet);
         rechercher.setOnClickListener(MyListener);
 
 
 
 
     }
+
 
     public View.OnFocusChangeListener FocusListener = new View.OnFocusChangeListener() {
         @Override
@@ -126,14 +160,34 @@ public class VoirTrajetActivity extends Activity {
             LinearLayout.LayoutParams paramsDate = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 150);
 
 
-            if (hasFocus) {
+            if (hasFocus && v.getId() == Integer.parseInt("2131296299")) {
 
                 paramsDate.height = 450;
                 linearLayoudDate.setVisibility(View.VISIBLE);
                 linearLayoudDate.setLayoutParams(paramsDate);
 
+            } else if (hasFocus && v.getId() == Integer.parseInt("2131296290")) {
+
+                if (departT.getText().toString() != "" && departT.getText().toString() != "IUT Annecy le Vieux"){
+                    arriveeT.setText("IUT Annecy le Vieux");
+                    departT.setText("");
+                } else {
+                    departT.setText("IUT Annecy le Vieux");
+                }
+
+            } else if (hasFocus && v.getId() == Integer.parseInt("2131296294")) {
+
+                if (arriveeT.getText().toString() != "" && arriveeT.getText().toString() != "IUT Annecy le Vieux"){
+                    departT.setText("IUT Annecy le Vieux");
+                    arriveeT.setText("");
+                } else {
+                    arriveeT.setText("IUT Annecy le Vieux");
+
+                }
+
+
             } else {
-                Log.d("d", "ok");
+
                 paramsDate.height = 0;
                 linearLayoudDate.setVisibility(View.INVISIBLE);
                 linearLayoudDate.setLayoutParams(paramsDate);
@@ -142,6 +196,10 @@ public class VoirTrajetActivity extends Activity {
 
 
             }
+
+
+
+
 
 
 
@@ -163,7 +221,7 @@ public class VoirTrajetActivity extends Activity {
             switch (v.getId()){
 
                 case R.id.btn_rechercherTrajet :
-                    Log.d("ok", de.getText().toString().isEmpty() + " ");
+
                     if(de.getText().toString().isEmpty())
                     {
 
@@ -206,12 +264,28 @@ public class VoirTrajetActivity extends Activity {
                     }
                     else
                     {
-                        Intent voirTrajet2 = new Intent(getApplicationContext(), VoirTrajet2.class);
-                        voirTrajet2.putExtra("depart", de.getText().toString());
-                        voirTrajet2.putExtra("arrivee", a.getText().toString());
-                        voirTrajet2.putExtra("date", date2.getText().toString());
-                        voirTrajet2.putExtra("numeroMonth", numeroM);
-                        startActivity(voirTrajet2);
+                        Credential credential = new Credential();
+                        ArrayList<String> vars = new ArrayList<String>();
+                        vars.add(de.getText().toString());
+                        vars.add(a.getText().toString());
+
+                        SimpleDateFormat input = new SimpleDateFormat("dd/MM/yyyy");
+                        SimpleDateFormat output = new SimpleDateFormat("yyyy/MM/dd");
+                        try {
+                            Date oneWayTripDate = input.parse(date2.getText().toString());                 // parse input
+                            String formats = output.format(oneWayTripDate);        // format output
+
+                            vars.add(formats);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        credential.HttpRequest("searchtrajet", vars);
+
+                        HttpRequestTaskManager result = new HttpRequestTaskManager(getApplicationContext());
+                        result.execute(credential);
+
+
+
                     }
 
                     break;
