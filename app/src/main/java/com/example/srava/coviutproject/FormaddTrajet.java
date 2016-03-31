@@ -38,7 +38,7 @@ public class FormaddTrajet extends Activity {
 
                     case R.id.prop :
                         // preparation de la connexion
-                        Log.d("Connexion", "bouton proposer appuyé!");
+                        Log.d("Connexion", "bouton proposer appuyÃ©!");
 
 
                         DatePicker date = (DatePicker)findViewById(R.id.d);

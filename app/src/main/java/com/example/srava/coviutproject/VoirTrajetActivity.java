@@ -150,7 +150,7 @@ public class VoirTrajetActivity extends Activity {
     }
 
 
-    public View.OnFocusChangeListener FocusListener = new View.OnFocusChangeListener() {
+   public View.OnFocusChangeListener FocusListener = new View.OnFocusChangeListener() {
         @Override
         public void onFocusChange(View v, boolean hasFocus) {
 
@@ -160,13 +160,13 @@ public class VoirTrajetActivity extends Activity {
             LinearLayout.LayoutParams paramsDate = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 150);
 
 
-            if (hasFocus && v.getId() == Integer.parseInt("2131296299")) {
+            if (hasFocus && v.getId() == Integer.parseInt("2131296300")) {
 
                 paramsDate.height = 450;
                 linearLayoudDate.setVisibility(View.VISIBLE);
                 linearLayoudDate.setLayoutParams(paramsDate);
 
-            } else if (hasFocus && v.getId() == Integer.parseInt("2131296290")) {
+            } else if (hasFocus && v.getId() == Integer.parseInt("2131296291")) {
 
                 if (departT.getText().toString() != "" && departT.getText().toString() != "IUT Annecy le Vieux"){
                     arriveeT.setText("IUT Annecy le Vieux");
@@ -175,7 +175,7 @@ public class VoirTrajetActivity extends Activity {
                     departT.setText("IUT Annecy le Vieux");
                 }
 
-            } else if (hasFocus && v.getId() == Integer.parseInt("2131296294")) {
+            } else if (hasFocus && v.getId() == Integer.parseInt("2131296295")) {
 
                 if (arriveeT.getText().toString() != "" && arriveeT.getText().toString() != "IUT Annecy le Vieux"){
                     departT.setText("IUT Annecy le Vieux");

@@ -22,6 +22,7 @@ import java.nio.charset.StandardCharsets;
 import static com.example.srava.coviutproject.OnPostExecuteFunction.OnPostExecuteInscription;
 import static com.example.srava.coviutproject.OnPostExecuteFunction.OnPostExecuteLogin;
 import static com.example.srava.coviutproject.OnPostExecuteFunction.OnPostExecuteProposer;
+import static com.example.srava.coviutproject.OnPostExecuteFunction.OnPostExecuteSearchpersonne;
 import static com.example.srava.coviutproject.OnPostExecuteFunction.OnPostExecuteTrajet;
 
 
@@ -117,7 +118,11 @@ public class HttpRequestTaskManager extends AsyncTask<Credential, String, JSONOb
                 Log.d("if id", "searchtrajet");
                 OnPostExecuteTrajet(etat, message, data, context);
 
-        }
+            } else if(identifiant.equals("searchpersonne")){
+                Log.d("if id", "searchpersonne");
+                OnPostExecuteSearchpersonne(etat, message, data, context);
+
+            }
 
 
         }  catch(JSONException e){

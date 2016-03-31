@@ -49,7 +49,8 @@ public class FormChoix extends Activity {
                     Intent voirTrajet = new Intent(getApplicationContext(), VoirTrajetActivity.class);
                     startActivity(voirTrajet);
                     break;
-                case R.id.buttonDec :
+
+                    case R.id.buttonDec :
                     sauvegardeShotsDB = new MyShotAdaptater(getBaseContext());
                     sauvegardeShotsDB.open();
                     sauvegardeShotsDB.removeAllShot();
